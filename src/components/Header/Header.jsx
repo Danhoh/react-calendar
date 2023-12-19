@@ -4,7 +4,7 @@ import styles from "./Header.css";
 export default function Header() {
 
   return (
-    <header className="header">
+    <header className={styles.header}>
       Calendar app
     </header >
   )

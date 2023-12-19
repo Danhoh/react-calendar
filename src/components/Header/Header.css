@@ -1,4 +1,21 @@
 .header {
-  background-color: grey;
+  display: block;
+  width: fit-content;
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 20px;
+
+  font-family: Silkscreen, sans-serif;
+  color: white;
+  background-color: rgb(202, 88, 213);
   text-align: center;
+  user-select: none;
+
+}
+
+.header:hover {
+  transition: all 1s;
+  opacity: 0.7;
+  cursor: pointer;
+
 }

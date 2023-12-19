@@ -12,7 +12,7 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.json', '.jsx'],
   },
-  module: {
+  module: { // loaders
     rules: [
       {
         test: /\.jsx$/,
@@ -29,8 +29,31 @@ module.exports = {
       },
       {
         test: /\.css$/i,
-        use: ["style-loader", "css-loader"],
-      }
+        use: [
+          "style-loader",
+          {
+            loader: "css-loader",
+            options: {
+              importLoaders: 1,
+              modules: true,
+            },
+          },
+        ],
+      },
+      { // fonts
+
+        test: /\.(woff|woff2|eot|ttf|otf)$/i,
+
+        type: 'asset/resource',
+
+      },
+      { // images
+
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+
+        type: 'asset/resource',
+
+      },
     ]
   },
   plugins: [
@@ -45,7 +68,8 @@ module.exports = {
     //   directory: path.join(__dirname, "/"),
     // },
     port: 8081,
-    open: true
+    open: true, // opens new browser tab with page
+    hot: true,
   },
   optimization: {
     splitChunks: {
