@@ -1,10 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import Layout from "./components/Layout/Layout";
 
 const reactRoot = document.querySelector('#root');
 
 function App() {
-  return <h1>Hello world!</h1>;
+  return (
+    <>
+      <Layout />
+    </>);
 }
 
 ReactDOM.render(<App />, reactRoot);

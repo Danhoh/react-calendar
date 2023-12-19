@@ -4,7 +4,8 @@
   "description": "SPA calendar app made with react",
   "main": "index.js",
   "scripts": {
-    "build": "webpack"
+    "build": "webpack",
+    "start": "npx webpack serve"
   },
   "keywords": [
     "calendar",
@@ -13,17 +14,20 @@
   "author": "Daniil Khokhlov <danhoh228@gmail.com>",
   "license": "ISC",
   "dependencies": {
+    "progress-webpack-plugin": "^1.0.16",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "webpack-cli": "^5.1.4"
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.23.6",
     "@babel/preset-env": "^7.23.6",
     "@babel/preset-react": "^7.23.3",
     "babel-loader": "^9.1.3",
+    "css-loader": "^6.8.1",
     "html-webpack-plugin": "^5.5.4",
+    "style-loader": "^3.3.3",
     "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^4.15.1"
   }
 }
