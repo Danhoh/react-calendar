@@ -1,9 +1,10 @@
 import React from "react"
+import CalendarContainer from "./CalendarContainer/CalendarContainer"
 
 export default function Calendar() {
   return (
-    <>
-      this is calendar
-    </>
+    <div>
+      <CalendarContainer />
+    </div>
   )
 }

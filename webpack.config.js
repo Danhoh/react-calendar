@@ -1,6 +1,9 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ProgressPlugin = require('progress-webpack-plugin')
+const ProgressPlugin = require('progress-webpack-plugin');
+const CopyPlugin = require("copy-webpack-plugin");
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
+
 
 module.exports = {
   entry: './src/App.jsx',
@@ -54,11 +57,34 @@ module.exports = {
         type: 'asset/resource',
 
       },
+      // {
+      //   test: /\.(png|svg|jpg|jpeg|gif)$/i,
+
+      //   use: [
+      //     {
+      //       loader: 'url-loader',
+      //       options: {
+      //         limit: false,
+      //       },
+      //     },
+      //   ],
+      // },
     ]
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, 'src', 'index.html'),
+    }),
+    new FaviconsWebpackPlugin({
+      logo: './src/static/favicon.svg', // svg works too!
+      mode: 'webapp', // optional can be 'webapp', 'light' or 'auto' - 'auto' by default
+      devMode: 'webapp', // optional can be 'webapp' or 'light' - 'light' by default 
+      favicons: {
+        icons: {
+          coast: false,
+          yandex: false
+        }
+      }
     }),
     new ProgressPlugin(true)
   ],
@@ -67,7 +93,7 @@ module.exports = {
     // static: {
     //   directory: path.join(__dirname, "/"),
     // },
-    port: 8081,
+    port: 8080,
     open: true, // opens new browser tab with page
     hot: true,
   },
@@ -76,7 +102,8 @@ module.exports = {
       chunks: 'all',
     },
   },
-  mode: 'production',
+  // mode: 'production',
+  mode: 'development',
   performance: {
     hints: false
   }
