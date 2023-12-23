@@ -14,4 +14,14 @@
 
   font-family: Roboto, sans-serif;
   font-size: 14pt;
+  user-select: none;
+}
+
+li {
+  list-style: none;
+}
+
+:root {
+  --generic-border-radius: 5px;
+  --grey: rgb(233, 233, 237);
 }

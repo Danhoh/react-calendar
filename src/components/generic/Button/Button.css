@@ -1,0 +1,11 @@
+.Button {
+  padding: 0.4vw;
+  border-radius: var(--generic-border-radius);
+  /* border-block: none; */
+  border: none;
+}
+
+.Button:hover {
+  /* transition: all .2s; */
+  cursor: pointer;
+}

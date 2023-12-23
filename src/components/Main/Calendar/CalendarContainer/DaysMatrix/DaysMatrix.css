@@ -1,0 +1,15 @@
+.day-cell {
+  display: inline-block;
+  margin: 5px;
+  width: 25px;
+  padding: 5px;
+  text-align: center;
+  border-radius: var(--generic-border-radius);
+  background-color: bisque;
+  user-select: none;
+}
+
+.day-cell:hover {
+  background-color: rgba(255, 228, 196, 0.596);
+  cursor: pointer;
+}

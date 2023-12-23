@@ -2,4 +2,7 @@
   margin: 0 auto;
   width: fit-content;
   height: fit-content;
+  background-color: rgba(250, 250, 250);
+  border-radius: var(--generic-border-radius);
+  padding: 10px;
 }

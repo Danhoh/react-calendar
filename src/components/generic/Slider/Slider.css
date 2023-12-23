@@ -1,0 +1,23 @@
+.slider-pup-up {
+  position: fixed;
+  margin-top: 20px;
+  background-color: var(--grey);
+  max-height: 150px;
+  height: fit-content;
+  overflow-y: scroll;
+  border-radius: var(--generic-border-radius);
+}
+
+.enabled {
+  visibility: visible;
+}
+
+.disabled {
+  visibility: hidden;
+}
+
+.slider-title-pup-up__ul {
+  padding-right: 10px;
+}
+
+.slider-title-pup-up__li {}
