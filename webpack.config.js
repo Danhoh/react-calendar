@@ -1,7 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ProgressPlugin = require('progress-webpack-plugin');
-const CopyPlugin = require("copy-webpack-plugin");
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 
 
@@ -90,9 +89,6 @@ module.exports = {
   ],
   devServer: {
     historyApiFallback: true,
-    // static: {
-    //   directory: path.join(__dirname, "/"),
-    // },
     port: 8080,
     open: true, // opens new browser tab with page
     hot: true,
