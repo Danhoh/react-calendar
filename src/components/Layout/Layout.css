@@ -23,5 +23,11 @@ li {
 
 :root {
   --generic-border-radius: 5px;
+  --big-border-radius: 20px;
   --grey: rgb(233, 233, 237);
+  --pink: rgb(202, 88, 213);
+}
+
+.layout {
+  min-height: 100vh;
 }

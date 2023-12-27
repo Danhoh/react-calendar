@@ -1,62 +1,62 @@
-import React, { useContext, useState, useEffect, useRef, forwardRef } from "react";
+import React, { useContext, useState, useEffect, forwardRef, useRef } from "react";
 import Button from "../Button/Button";
 import styles from "./Slider.css";
 import cn from "classnames";
 import { AppContext } from "../../Layout/Layout";
+import classNames from "classnames";
 
-
-export default function Slider({ values, ...rest }) {
+export default function Slider({
+  values, valueID, className, sliderButtonHandler,
+  sliderPopUpButtonHandler, ...rest }) {
   const appContext = useContext(AppContext);
   const sliderValues = values ? values : ['...'];
-  const [popUpVisability, setpopUpVisability] = useState(false);
-  const [sliderButtonValue, setSliderButtonValue] = useState(sliderValues[0]);
+  const [popUpVisability, setPopUpVisability] = useState(false);
   const containerRef = useRef(null);
 
-  const ButtonHandler = () => {
-    setpopUpVisability(!popUpVisability);
+  useEffect(() => {
+    if (appContext.mouseDown && !containerRef.current.contains(appContext.target)) {
+      setPopUpVisability(false);
+    }
+  }, [appContext.mouseDown]);
+
+  const genericSliderButtonHandler = () => {
+    sliderButtonHandler && sliderButtonHandler();
+    setPopUpVisability(!popUpVisability);
   }
 
-  useEffect(() => {
-    function handleClickOutside(event) {
-      if (containerRef.current && !containerRef.current.contains(event.target)) {
-        console.log(`You clicked outside of me! ${Math.random() * 10000}`);
-      }
-    }
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [containerRef.current]);
+  const genericSliderPopUpButtonHandler = (id) => {
+    sliderPopUpButtonHandler && sliderPopUpButtonHandler(id);
+    setPopUpVisability(!popUpVisability);
+  }
 
   return (
-    <div className={styles["slider"]}>
+    <div ref={containerRef} className={classNames(styles["slider"], className)} {...rest}>
       <Button
-        value={sliderButtonValue}
-        onClick={ButtonHandler}
+        value={values[valueID]}
+        onClick={genericSliderButtonHandler}
       />
       <SliderPopUp
-        ref={containerRef}
         className={(() => {
           return popUpVisability ? styles.enabled : styles.disabled;
         })()}
         values={sliderValues}
-        sliderButtonHandler={(val) => {
-          setSliderButtonValue(val);
-          setpopUpVisability(!popUpVisability);
-        }}
+        sliderPopUpButtonHandler={genericSliderPopUpButtonHandler}
       />
     </div>
   )
 }
 
-const SliderPopUp = forwardRef(function (props, ref) {
+function SliderPopUp({ sliderPopUpButtonHandler, ...rest }) {
 
   return (
-    <div ref={ref} className={cn(styles['slider-pup-up'], props.className)}>
-      <ul className={styles['slider-title-pup-up__ul']}>
-        {props.values.map((val, i) => {
+    <div className={cn(styles['slider-pop-up'], rest.className)}>
+      <ul className={styles['slider-title-pop-up__ul']}>
+        {rest.values.map((val, i) => {
           return (
-            <li className={styles['slider-title-pup-up__li']}>
+            <li
+              key={i}
+              className={styles['slider-title-pop-up__li']}
+            >
               <Button
                 value={val}
                 style={{
@@ -65,7 +65,7 @@ const SliderPopUp = forwardRef(function (props, ref) {
                   width: '100%',
                 }}
                 onClick={() => {
-                  props.sliderButtonHandler(props.values[i]);
+                  sliderPopUpButtonHandler(i);
                 }}
               />
             </li>
@@ -74,4 +74,4 @@ const SliderPopUp = forwardRef(function (props, ref) {
       </ul>
     </div>
   )
-})
+}

@@ -1,6 +1,10 @@
-.slider-pup-up {
+.slider {
+  display: inline-block;
+}
+
+.slider-pop-up {
   position: fixed;
-  margin-top: 20px;
+  margin-top: 10px;
   background-color: var(--grey);
   max-height: 150px;
   height: fit-content;
@@ -16,8 +20,8 @@
   visibility: hidden;
 }
 
-.slider-title-pup-up__ul {
+.slider-title-pop-up__ul {
   padding-right: 10px;
 }
 
-.slider-title-pup-up__li {}
+.slider-title-pop-up__li {}

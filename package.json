@@ -2,9 +2,11 @@
   "name": "react-calendar",
   "version": "1.0.0",
   "description": "SPA calendar app made with react",
-  "main": "index.js",
+  "main": "App.js",
   "scripts": {
-    "build": "webpack",
+    "build": "webpack --env mode=development",
+    "build:dev": "webpack --env mode=development",
+    "build:prod": "webpack --env mode=production",
     "start": "npx webpack serve"
   },
   "keywords": [

@@ -1,10 +1,17 @@
 import React from "react";
 import styles from "./DaysMatrix.css"
+import classNames from "classnames";
 
 
-export default function DaysMatrix(props) {
+export default function DaysMatrix({ selectedDay,
+  clickCellHandler, className, ...rest }) {
+  function genericClickCellHandler(id) {
+    return () => {
+      clickCellHandler && clickCellHandler(id);
+    }
+  }
   const geterateMatrix = () => {
-    let daysCount = props.daysCount ? props.daysCount : 30;
+    let daysCount = rest.daysCount ? rest.daysCount : 30;
     const rowsCount = Math.ceil(daysCount / 7);
     const matrix = (function () {
       let arr = [];
@@ -19,30 +26,43 @@ export default function DaysMatrix(props) {
     for (let i = 0; i < rowsCount; i++) {
       for (let j = 0; j < weekDaysCount; j++) {
         if (daysCount > 0) {
-          matrix[i].push(<DayCell>{i * 7 + j + 1}</DayCell>);
+          const dayNumber = i * 7 + j + 1;
+          matrix[i].push(
+            <DayCell
+              className={classNames(className, selectedDay == dayNumber && styles['selected-day'])}
+              key={dayNumber}
+              clickCellHandler={genericClickCellHandler(dayNumber)}
+            >
+              {dayNumber}
+            </DayCell>
+          );
           daysCount--;
         } else {
           break;
         }
       }
     }
-    return matrix.map(e => {
+    return matrix.map((e, i) => {
       return (
-        <div>{e}</div>
+        <div key={i}>{e}</div>
       )
     });
   }
   return (
-    <div>
+    <div {...rest}>
       {geterateMatrix()}
     </div>
   )
 }
 
-function DayCell(props) {
+function DayCell({ children, className, clickCellHandler, ...rest }) {
   return (
-    <span className={styles['day-cell']}>
-      {props.children ? props.children : 'day'}
+    <span
+      className={classNames(className, styles['day-cell'])}
+      onClick={clickCellHandler}
+      {...rest}
+    >
+      {children ? children : '0'}
     </span>
   )
 }

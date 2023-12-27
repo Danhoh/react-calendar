@@ -3,11 +3,11 @@
   width: fit-content;
   margin: 20px auto;
   padding: 20px;
-  border-radius: 20px;
+  border-radius: var(--big-border-radius);
 
   font-family: Silkscreen, sans-serif;
   color: white;
-  background-color: rgb(202, 88, 213);
+  background-color: var(--pink);
   text-align: center;
   user-select: none;
 
